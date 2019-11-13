@@ -1,0 +1,16 @@
+apiVersion: v1              # k8s版本
+kind: Service               # kind 環境描述表示這是Service的文件
+# Service metadata 
+metadata:
+  name: learn-k8s-service   # service name
+  labels:                   # label
+    app: learn-k8s
+    tier: frontend          # tier：架構標籤
+spec:                       # 規定約範
+  type: NodePort            # Service.type
+  selector:                 # 指定
+    app: learn-k8s
+    tier: frontend
+  ports:
+  - port: 80
+    targetPort: http-server
