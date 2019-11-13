@@ -22,4 +22,13 @@ with vscode `shift + commamd + P`
 ```
 裡面有多種語言範例架構學習
 
-> 此專案為個人學習註解使用
+---
+首先有一個 前端/後端/資料庫 的一個基本的伺服器架構
+將其三個架構封裝成`Image`
+```
+Docker build -it <ImageName> <PATH>
+```
+如果要使用本地的Image 要記得在 deployment.yaml 的 template.spec
+加上 `imagePullPolicy: Never` 預設我有將此行隱藏
+
+> 此專案為個人學習註解使用持續編輯中

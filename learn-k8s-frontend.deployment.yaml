@@ -1,31 +1,32 @@
-apiVersion: apps/v1           # k8s版本
-kind: Deployment              # kind 環境描述表示這是Deploy的文件
+apiVersion: apps/v1            # k8s版本
+kind: Deployment               # kind 環境描述表示這是Deploy的文件
 # Deployment metadata 
 metadata:                     
-  name: learn-k8s-deploy      # deploy name
-  labels:                     # label
+  name: learn-k8s-deploy       # deploy name
+  labels:                      # label
     app: learn-k8s
-    tier: frontend            # tier：架構標籤
-spec:                         # 規定約範
-  replicas: 3                 # 開啟叢集數量：3
-  selector:                   # 指定
-    matchLabels:              # Deploy Label == matchLables
+    tier: frontend             # tier：架構標籤
+spec:                          # 規定約範
+  replicas: 3                  # 開啟叢集數量：3
+  selector:                    # 指定
+    matchLabels:               # Deploy Label == matchLables
       app: learn-k8s
       tier: frontend
   # .spec.template 其實就是定義 Pod
   template:
-    metadata:                 # metadata
-      labels:                 # Pods labels 與 Deploy 連結
+    metadata:                  # metadata
+      labels:                  # Pods labels 與 Deploy 連結
         app: learn-k8s
         tier: frontend
-    spec:                     # 規定約範
-      containers:             # 容器
-      - name: frontend        # Pods name
-        image: nginx:1.7.9    # Pods image
-        resources:            # 資源限制 
-          limits:             # 資源極限
+    spec:                      # 規定約範
+      containers:              # 容器
+      - name: frontend         # Pods name
+        image: nginx           # Pods image
+        # imagePullPolicy: Never # 這個是使用本地的 Docker Images [!]
+        resources:             # 資源限制 
+          limits:              # 資源極限
             memory: "128Mi" 
             cpu: "500m"
-        ports:                # Pods ports
-        - name: http-server   # Pods name
-          containerPort: 80   # 容器的Port號
+        ports:                 # Pods ports
+        - name: http-server    # Pods name
+          containerPort: 80    # 容器Images中對外的Port號
